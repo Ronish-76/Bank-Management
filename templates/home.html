@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Management System</title>
+    <style>
+      body {
+        background: white;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        margin: 2em 0 0 10vw;
+        max-width: 700px;
+      }
+      h1,
+      h2 {
+        margin-bottom: 1em;
+      }
+      form {
+        margin-bottom: 2em;
+      }
+      label {
+        margin-right: 0.5em;
+      }
+      input[type="text"],
+      input[type="number"] {
+        margin-right: 1em;
+        padding: 0.3em;
+      }
+      button {
+        padding: 0.3em 1em;
+        margin-right: 0.5em;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 1em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid #ccc;
+      }
+      .bank-info {
+        margin-bottom: 0.5em;
+      }
+      .bank-balance {
+        margin-bottom: 0.5em;
+      }
+      .no-banks {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bank Management System</h1>
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Add Bank</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="bank_name">Bank Name:</label>
+      <input type="text" name="bank_name" required />
+      <button type="submit">Add Bank</button>
+    </form>
+    <h2>Banks</h2>
+    <ul>
+      {% for bank in banks %}
+      <li>
+        <strong>ID:</strong> {{ bank.id }}<br />
+        <strong>Name:</strong>
+        <a href="{% url 'view_bank' bank.id %}">{{ bank.bank_name }}</a><br />
+        <strong>Balance:</strong> ₹{{ bank.balance }}
+        <form method="post" style="display: inline">
+          {% csrf_token %}
+          <input
+            type="hidden"
+            name="bank_index"
+            value="{{ forloop.counter0 }}"
+          />
+          <input
+            type="number"
+            name="amount"
+            min="1"
+            placeholder="Amount"
+            required
+          />
+          <button type="submit" name="add_balance">Add</button>
+          <button type="submit" name="remove_balance">Remove</button>
+        </form>
+        <form method="post" style="display: inline">
+          {% csrf_token %}
+          <input
+            type="hidden"
+            name="bank_index"
+            value="{{ forloop.counter0 }}"
+          />
+          <button type="submit" name="delete_bank">Delete</button>
+        </form>
+      </li>
+      {% empty %}
+      <li>No banks added yet.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
