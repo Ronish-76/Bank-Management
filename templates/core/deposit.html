@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block title %}Deposit{% endblock %}
+{% block content %}
+<h2>Deposit</h2>
+<p><strong>Account Number:</strong> {{ account.account_number }}</p>
+<p><strong>Current Balance:</strong> ₹{{ account.balance }}</p>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Deposit</button>
+</form>
+{% endblock %}

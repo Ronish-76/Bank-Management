@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block title %}Account Info{% endblock %}
+{% block content %}
+<h2>Account Information</h2>
+{% if account %}
+<ul class="list-group mb-4">
+    <li class="list-group-item"><strong>First Name:</strong> {{ account.first_name }}</li>
+    <li class="list-group-item"><strong>Last Name:</strong> {{ account.last_name }}</li>
+    <li class="list-group-item"><strong>Date of Birth:</strong> {{ account.date_of_birth }}</li>
+    <li class="list-group-item"><strong>Address:</strong> {{ account.address }}</li>
+    <li class="list-group-item"><strong>Phone Number:</strong> {{ account.phone_number }}</li>
+    <li class="list-group-item"><strong>Account Number:</strong> {{ decoded_number }}</li>
+    <li class="list-group-item"><strong>Balance:</strong> ₹{{ account.balance }}</li>
+    <li class="list-group-item"><strong>Status:</strong> {{ account.is_active|yesno:"Active,Inactive" }}</li>
+    <li class="list-group-item"><strong>Created At:</strong> {{ account.created_at }}</li>
+</ul>
+{% else %}
+<p>You do not have a bank account yet.</p>
+{% endif %}
+{% endblock %}

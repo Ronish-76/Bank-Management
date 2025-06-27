@@ -1,0 +1,73 @@
+:root {
+  --primary: #4f46e5;
+  --secondary: #64748b;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #facc15;
+  --info: #0ea5e9;
+  --light: #f8fafc;
+  --dark: #0f172a;
+  --bs-body-font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-primary:hover {
+  background-color: #6366f1 !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.15);
+}
+
+.btn-secondary {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+
+.card {
+  box-shadow: 0 2px 16px rgba(15, 23, 42, 0.08);
+  border-radius: 1rem;
+  border: none;
+}
+
+.card-header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.alert {
+  border-radius: 0.75rem;
+  font-size: 1rem;
+}
+
+input,
+select,
+textarea {
+  border-radius: 0.5rem !important;
+  border-color: var(--secondary) !important;
+}
+
+.navbar {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.dropdown-menu {
+  border-radius: 0.75rem;
+}
+
+/* Smooth transitions for interactive elements */
+.btn,
+.card,
+.alert,
+.form-control,
+.navbar,
+.dropdown-menu {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

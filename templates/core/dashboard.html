@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4 text-center">WELCOME {{ user.username }}</h2>
+{% if account %}
+<div class="row mb-4">
+  <div class="col-md-6 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">Account Info</div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Account Number:</strong> {{ decoded_number }}</li>
+          <li class="list-group-item"><strong>Balance:</strong> ₹{{ account.balance }}</li>
+          <li class="list-group-item"><strong>Status:</strong> {{ account.is_active|yesno:"Active,Inactive" }}</li>
+        </ul>
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-success" href="{% url 'deposit' %}">Deposit</a>
+          <a class="btn btn-warning" href="{% url 'withdraw' %}">Withdraw</a>
+          <a class="btn btn-primary" href="{% url 'transfer' %}">Transfer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-header bg-secondary text-white">Transaction History</div>
+      <div class="card-body">
+        {% if transactions %}
+        <ul class="list-group">
+          {% for txn in transactions %}
+          <li class="list-group-item">
+            <span class="fw-bold">{{ txn.timestamp|date:"Y-m-d H:i" }}</span> -
+            <span class="text-capitalize">{{ txn.get_type_display }}</span>:
+            <span class="text-success">₹{{ txn.amount }}</span>
+            {% if txn.description %}<span class="text-muted">({{ txn.description }})</span>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-muted mb-0">No transactions have been made on this account yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="alert alert-info text-center">
+      <p class="mb-3">You do not have a bank account yet.</p>
+      <a class="btn btn-primary" href="{% url 'create_account' %}">Create Bank Account</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
