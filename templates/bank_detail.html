@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Bank Details</title>
-  </head>
-  <body>
-    <h1>Bank Details</h1>
-    <ul>
-      <li><strong>ID:</strong> {{ bank.id }}</li>
-      <li><strong>Name:</strong> {{ bank.bank_name }}</li>
-      <li><strong>Balance:</strong> ₹{{ bank.balance }}</li>
-    </ul>
-    <a href="/">Back to Home</a>
-  </body>
+
+<head>
+  <!-- Meta tags for proper character encoding and responsive design -->
+  <meta charset="UTF-8" />
+  <!-- Page title displayed in browser tab -->
+  <title>Bank Details</title>
+</head>
+
+<body>
+  <!-- Main heading for the bank details page -->
+  <h1>Bank Details</h1>
+
+  <!-- Unordered list displaying bank information -->
+  <ul>
+    <!-- Bank ID field -->
+    <li><strong>ID:</strong> {{ bank.id }}</li>
+    <!-- Bank name field -->
+    <li><strong>Name:</strong> {{ bank.bank_name }}</li>
+    <!-- Bank balance field with currency symbol -->
+    <li><strong>Balance:</strong> ₹{{ bank.balance }}</li>
+  </ul>
+
+  <!-- Navigation link back to home page -->
+  <a href="/">Back to Home</a>
+</body>
+
 </html>
