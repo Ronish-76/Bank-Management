@@ -1,6 +1,5 @@
 # Bank Management System
 
-
 A simple Django web app to manage banks and their balances.
 
 ## Features
