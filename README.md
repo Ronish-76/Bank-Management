@@ -28,3 +28,4 @@ A simple Django web app to manage banks and their balances.
 
 - Data is not persistent (in-memory only)
 - Admin panel: `/admin/`
+
